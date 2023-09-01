@@ -1,6 +1,7 @@
 import { MenuType } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
+import UserLinks from "./UserLinks";
 
 const getData = async () => {
   const res = await fetch("http://localhost:3000/api/categories");
@@ -92,9 +93,7 @@ const Navbar = async () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li>
-              <a>Logout</a>
-            </li>
+            <UserLinks />
           </ul>
         </div>
       </div>

@@ -6,7 +6,9 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {},
+  daisyui: {
+    themes: ["light", "dark", "cupcake"],
+  },
   plugins: [require("daisyui")],
 };
 export default config;

@@ -1,11 +1,7 @@
-import MenuPage from "./components/menu/page";
+import Products from "@/components/Products";
 
 const Home = () => {
-  return (
-    <div>
-      <MenuPage />
-    </div>
-  );
+  return <Products />;
 };
 
 export default Home;

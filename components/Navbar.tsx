@@ -1,7 +1,8 @@
 import { MenuType } from "@/types/types";
 import Image from "next/image";
+import Link from "next/link";
 
-const getData = async (): Promise<MenuType> => {
+const getData = async () => {
   const res = await fetch("http://localhost:3000/api/categories");
 
   if (!res.ok) {
@@ -11,16 +12,39 @@ const getData = async (): Promise<MenuType> => {
   return res.json();
 };
 
-const MenuPage = async () => {
-  const menu = await getData();
+const Navbar = async () => {
+  const categories: MenuType = await getData();
 
   return (
-    <div className="navbar bg-base-100">
-      <div className="flex-1">
-        <h1 className="normal-case text-xl">🎂 CakeMe</h1>
+    <div className="navbar flex flex-wrap justify-center sm:flex-nowrap md:flex-nowrap lg:flex-nowrap bg-base-100">
+      <div className="navbar-start mb-5">
+        <Link href="/" className="btn btn-ghost normal-case text-xl">
+          🎂 CakeMe
+        </Link>
       </div>
-      <div className="flex-none">
-        <div className="dropdown dropdown-end">
+
+      <div className="navbar-center mb-5 sm:mb-0">
+        <ul className="menu menu-horizontal bg-base-200 rounded-box">
+          {categories.map((category) => (
+            <li key={category.id}>
+              <Link href={`/cakes/${category.title}`}>{category.title}</Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="navbar-end">
+        <div className="flex-none gap-2 mr-4">
+          <div className="form-control">
+            <input
+              type="text"
+              placeholder="Search"
+              className="input input-bordered w-24 md:w-auto"
+            />
+          </div>
+        </div>
+
+        <div className="dropdown dropdown-end mr-4">
           <label tabIndex={0} className="btn btn-ghost btn-circle">
             <div className="indicator">
               <svg
@@ -69,30 +93,13 @@ const MenuPage = async () => {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
               <a>Logout</a>
             </li>
           </ul>
         </div>
       </div>
     </div>
-    // <ul className="menu menu-horizontal bg-base-200 rounded-box">
-    //   {menu &&
-    //     menu.categories.map((category) => (
-    //       <li key={category.id}>
-    //         <a>{category.title}</a>
-    //       </li>
-    //     ))}
-    // </ul>
   );
 };
 
-export default MenuPage;
+export default Navbar;

@@ -1,5 +1,6 @@
 import { ProductType } from "@/types/types";
 import Image from "next/image";
+import Link from "next/link";
 
 type Props = {
   params: {
@@ -24,7 +25,8 @@ const CategoryPage = async ({ params }: Props) => {
   return (
     <div className="flex flex-wrap justify-center">
       {products.map((product) => (
-        <div
+        <Link
+          href={`/product/${product.id}`}
           key={product.id}
           className="card w-96 h-96 bg-base-120 shadow-xl mt-20 m-3"
         >
@@ -45,7 +47,7 @@ const CategoryPage = async ({ params }: Props) => {
             <p>{product.description}</p>
             <button className="btn btn-primary">Buy Now</button>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );

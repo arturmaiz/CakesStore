@@ -1,5 +1,6 @@
 import { ProductType } from "@/types/types";
 import Image from "next/image";
+import Link from "next/link";
 
 const getData = async () => {
   const res = await fetch("http://localhost:3000/api/products");
@@ -17,7 +18,8 @@ const Products = async () => {
   return (
     <div className="flex flex-wrap justify-center">
       {products.map((product) => (
-        <div
+        <Link
+          href={`/product/${product.id}`}
           key={product.id}
           className="card w-96 h-96 bg-base-120 shadow-xl mt-20 m-3"
         >
@@ -38,7 +40,7 @@ const Products = async () => {
             <p>{product.description}</p>
             <button className="btn btn-primary">Buy Now</button>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );

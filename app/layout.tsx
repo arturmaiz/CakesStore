@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import "./globals.css";
 import type { Metadata } from "next";
 import AuthProvider from "@/components/AuthProvider";
+import QueryProvider from "@/components/QueryProvider";
 
 export const metadata: Metadata = {
   title: "🎂 CakeMe",
@@ -17,8 +18,10 @@ export default function RootLayout({
     <html lang="en" data-theme="cupcake">
       <body>
         <AuthProvider>
-          <Navbar />
-          <div className="container mx-auto">{children}</div>
+          <QueryProvider>
+            <Navbar />
+            <div className="container mx-auto">{children}</div>
+          </QueryProvider>
         </AuthProvider>
       </body>
     </html>

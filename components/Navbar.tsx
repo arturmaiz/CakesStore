@@ -26,11 +26,16 @@ const Navbar = async () => {
 
       <div className="navbar-center mb-5 sm:mb-0">
         <ul className="menu menu-horizontal bg-base-200 rounded-box">
-          {categories.map((category) => (
-            <li key={category.id}>
-              <Link href={`/cakes/${category.title}`}>{category.title}</Link>
+          <>
+            <li>
+              <Link href={"/"}>All</Link>
             </li>
-          ))}
+            {categories.map((category) => (
+              <li key={category.id}>
+                <Link href={`/cakes/${category.title}`}>{category.title}</Link>
+              </li>
+            ))}
+          </>
         </ul>
       </div>
 
